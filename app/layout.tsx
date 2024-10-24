@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     "Frontend Developer",
     "Backend Developer",
     "Fullstack Developer",
-    "Software Developer",
+    "Software Developer", 
   ],
 };
 
