@@ -5,6 +5,7 @@ import Skills from "@/components/home/Skills";
 import Technology from "@/types/Technology";
 import PostPreview from "@/types/PostPreview";
 import PostsGrid from "@/components/home/RecentPosts";
+import transformPost from "@/lib/contentful/transformPost";
 
 export default async function Home() {
   const techs: EntryCollection<EntrySkeletonType, undefined, string> =
@@ -25,28 +26,7 @@ export default async function Home() {
       limit: 4,
     });
 
-  const posts: PostPreview[] = recentPosts.items.map((item) => ({
-    id: item.sys.id,
-    title: item.fields?.title as string,
-    coverImage: `https:${
-      (item.fields?.banner as EntrySkeletonType)?.fields?.file?.url
-    }`,
-    date: item.sys?.createdAt as string,
-    excerpt: item.fields?.excerpt as string,
-    categories: (item.fields?.categories as never[])?.map(
-      (category: {
-        sys: { id: string };
-        fields: { title: string; slug: string; description: string };
-      }) => ({
-        id: category.sys.id as string,
-        name: category.fields.title as string,
-        slug: category.fields.slug as string,
-        description: category.fields.description as string,
-      })
-    ),
-    slug: item.fields?.slug as string,
-    readTime: item.fields?.readTime as string,
-  }));
+  const posts: PostPreview[] = recentPosts.items.map(transformPost);
 
   return (
     <div className="home-page">
