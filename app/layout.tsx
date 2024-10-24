@@ -40,8 +40,11 @@ export const metadata: Metadata = {
     "Frontend Developer",
     "Backend Developer",
     "Fullstack Developer",
-    "Software Developer", 
+    "Software Developer",
   ],
+  alternates: {
+    canonical: "./",
+  },
 };
 
 export default function RootLayout({
