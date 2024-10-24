@@ -58,8 +58,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const postsList: PostPreview[] = posts.items?.map(transformPost);
 
-  console.log(postsList);
-
   return (
     <>
       <div>
