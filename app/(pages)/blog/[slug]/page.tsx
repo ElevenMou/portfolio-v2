@@ -1,7 +1,7 @@
 import PostsGrid from "@/components/home/PostsGrid";
 import contentful from "@/lib/contentful/contentful";
 import PostPreview from "@/types/PostPreview";
-import { EntryCollection, EntrySkeletonType } from "contentful";
+import { Entry, EntryCollection, EntrySkeletonType } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -57,8 +57,16 @@ export default async function page({ params }: { params: { slug: string } }) {
 
   const relatedPosts: PostPreview[] =
     post.fields.relatedContent &&
-    (post.fields.relatedContent as Array<any>).length > 0
-      ? (post.fields.relatedContent as any)?.map(transformPost)
+    (
+      post.fields.relatedContent as Array<
+        Entry<EntrySkeletonType, undefined, string>
+      >
+    ).length > 0
+      ? (
+          post.fields.relatedContent as Array<
+            Entry<EntrySkeletonType, undefined, string>
+          >
+        )?.map(transformPost)
       : [];
 
   return (
@@ -71,10 +79,24 @@ export default async function page({ params }: { params: { slug: string } }) {
           <span>&gt;</span>
           <Link
             href={`/blog/categories/${
-              formatCategory(post.fields.category as any).slug
+              formatCategory(
+                post.fields.category as Entry<
+                  EntrySkeletonType,
+                  undefined,
+                  string
+                >
+              ).slug
             }`}
           >
-            {formatCategory(post.fields.category as any).name}
+            {
+              formatCategory(
+                post.fields.category as Entry<
+                  EntrySkeletonType,
+                  undefined,
+                  string
+                >
+              ).name
+            }
           </Link>
           <span>&gt;</span>
           <span>
