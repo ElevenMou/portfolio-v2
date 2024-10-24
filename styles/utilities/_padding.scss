@@ -1,0 +1,43 @@
+/* Usefull - Padding */
+////
+/// @group UsefullClasses-Padding
+/// Usefull - Padding
+
+///
+.padding {
+  @each $type, $value in $sizes {
+    &-#{$type} {
+      padding: var(--space-#{$type});
+    }
+
+    &-top-#{$type} {
+      padding-top: var(--space-#{$type});
+    }
+
+    &-bottom-#{$type} {
+      padding-bottom: var(--space-#{$type});
+    }
+
+    &-left-#{$type} {
+      padding-left: var(--space-#{$type});
+    }
+
+    &-right-#{$type} {
+      padding-right: var(--space-#{$type});
+    }
+
+    &-x-#{$type} {
+      padding-left: var(--space-#{$type});
+      padding-right: var(--space-#{$type});
+    }
+
+    &-y-#{$type} {
+      padding-bottom: var(--space-#{$type});
+      padding-top: var(--space-#{$type});
+    }
+  }
+
+  &-auto {
+    padding: 0 auto;
+  }
+}

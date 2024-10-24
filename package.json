@@ -9,18 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.22.11",
+    "@splidejs/react-splide": "^0.7.12",
+    "contentful": "^11.1.4",
+    "highlight.js": "^11.10.0",
+    "next": "14.2.15",
+    "next-themes": "^0.3.0",
+    "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.15"
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.15"
+    "eslint-config-next": "14.2.15",
+    "sass": "^1.80.3",
+    "typescript": "^5"
   }
 }

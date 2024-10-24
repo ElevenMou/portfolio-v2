@@ -1,0 +1,19 @@
+.theme-changer {
+  display: flex;
+  align-items: center;
+  &__button {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    &:hover {
+      color: var(--color-primary);
+    }
+    &:active {
+      color: var(--color-primary-selected);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}

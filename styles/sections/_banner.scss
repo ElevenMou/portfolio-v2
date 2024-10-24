@@ -1,0 +1,102 @@
+.banner {
+  background-color: rgb(var(--header-color));
+  padding: var(--space-xxl);
+  p {
+    margin: 0;
+  }
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    @media screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+      gap: var(--space-l);
+      justify-content: center;
+      text-align: center;
+    }
+  }
+  &__left {
+    flex: 1;
+    &__location {
+      display: flex;
+      align-items: center;
+      gap: var(--space-base);
+      margin-bottom: var(--space-l);
+      @media screen and (max-width: 768px) {
+        justify-content: center;
+      }
+    }
+    p {
+      max-width: 600px;
+    }
+    &__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-base);
+      margin-top: var(--space-l);
+
+      @media screen and (max-width: 768px) {
+        justify-content: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--color-text-body);
+        font-weight: var(--font-semi-bold);
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        &:hover {
+          text-decoration: underline;
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+  &__right {
+    position: relative;
+    &__image {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 100%;
+      padding: 10px; /*border width*/
+      background-image: conic-gradient(
+        from var(--angle),
+        #fff,
+        #5fbaff,
+        #150040,
+        #150050,
+        #000,
+        #25252e,
+        #fff /* Repeat the first color */
+      );
+      animation: 1.5s borderSpin linear infinite;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+    }
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes borderSpin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}

@@ -1,0 +1,123 @@
+@import "./colors";
+@import "./typography";
+@import "./global";
+
+:root {
+  /*! Typography - Size */
+  @each $type, $value in $typography-heading-sizes {
+    --font-size-h#{$type}: #{$value};
+  }
+
+  @each $type, $value in $typography-sizes {
+    --font-size-#{$type}: #{$value};
+  }
+
+  /*! Typography - Weight */
+  @each $type, $value in $typography-weight {
+    --font-#{$type}: #{$value};
+  }
+
+  /*! Color - Brand */
+  @each $type, $value in $colors-brand {
+    --color-#{$type}: #{$value};
+  }
+
+  /*! Color - Neutral */
+  @each $type, $value in $colors-neutral {
+    --color-neutral-#{$type}: #{$value};
+  }
+
+  /*! Color - Semantic */
+  @each $type, $value in $colors-semantic {
+    --color-#{$type}: #{$value};
+  }
+
+  /*! Space - Sizes */
+  @each $type, $value in $sizes {
+    --space-#{$type}: #{$value};
+  }
+
+  /*! Elevation / Shadow */
+  @each $type, $value in $shadow-types {
+    --shadow-#{$type}: #{$value};
+  }
+
+  /*! App Settings */
+  --color-background-body: #{$color-background-body-light};
+  --color-background-card: #{$color-background-card-light};
+  --color-text-body: #{$color-text-body-light};
+  --header-color: #{$header-color-light};
+  --header-height: 80px;
+  --content-size: 980px;
+  --content-wide-size: 1200px;
+}
+
+[data-theme="dark"] {
+  --color-background-body: #{$color-background-body-dark};
+  --color-background-card: #{$color-background-card-dark};
+  --color-text-body: #{$color-text-body-dark};
+  --header-color: #{$header-color-dark};
+}
+
+/* ----------------------------------------------------------------------------
+  Reset
+----------------------------------------------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  color: var(--color-text-body);
+  background: var(--color-background-body);
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-geist-sans);
+}
+
+main {
+  min-height: calc(100svh - var(--header-height));
+}
+
+/// Default h1, .heading1-6 and font-size-display styles
+h1,
+.heading1,
+h2,
+.heading2,
+h3,
+.heading3,
+h4,
+.heading4,
+h5,
+.heading5,
+h6,
+.heading6,
+.font-size-display {
+  font-weight: var(--font-semi-bold);
+  line-height: 1.25;
+  margin: 0;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+/// Default h1 and .heading1-6 sizes
+h,
+.heading {
+  @each $type, $value in $typography-heading-sizes {
+    &#{$type} {
+      font-size: var(--font-size-h#{$type});
+    }
+  }
+}
+
+// Default .font-size-h1-6 values
+@each $type, $value in $typography-heading-sizes {
+  .font-size-h#{$type} {
+    font-size: var(--font-size-h#{$type});
+  }
+}

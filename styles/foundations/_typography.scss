@@ -1,0 +1,13 @@
+/* ---------------------------------------------------------------------------- */
+/* Typography																	*/
+/* ---------------------------------------------------------------------------- */
+
+/// Typography sizes
+$typography-sizes: "5xl" 60px, "4xl" 48px, "3xl" 36px, "2xl" 32px,
+  "xl" 24px, "l" 20px, "m" 18px, "base" 16px, "s" 14px, "xs" 12px, "2xs" 10px;
+
+/// Typography Headings sizes
+$typography-heading-sizes: 1 32px, 2 28px, 3 26px, 4 22px, 5 20px, 6 18px;
+
+/// Typography Weight
+$typography-weight: "light" 300, "regular" 400, "semi-bold" 600, "bold" 700;

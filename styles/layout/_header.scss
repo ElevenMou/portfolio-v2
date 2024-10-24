@@ -1,0 +1,131 @@
+header {
+  padding: 0 var(--space-xxl);
+  height: var(--header-height);
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(var(--header-color), 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @media screen and (max-width: 768px) {
+    padding-inline: var(--space-m);
+  }
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: var(--content-wide-size);
+    margin-inline: auto;
+  }
+
+  .logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-l);
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      height: calc(100svh - var(--header-height));
+      background-color: var(--header-color);
+      padding: var(--space-m);
+      transform: translateX(-100%);
+      transition: transform 300ms ease-in-out;
+
+      &.visible {
+        transform: translateX(0);
+      }
+
+      .theme-changer {
+        position: absolute;
+        bottom: var(--space-m);
+        right: var(--space-m);
+      }
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--space-s);
+        align-items: start;
+        width: 100%;
+        height: 100%;
+
+        li {
+          width: 100%;
+        }
+      }
+    }
+
+    a {
+      color: var(--color-text-body);
+      text-decoration: none;
+      padding: 12px 24px;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      position: relative;
+      transition: color 300ms 400ms ease-in-out;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        z-index: -1;
+        background-color: var(--color-primary-hover);
+        transition: width 300ms ease-in, height 300ms 500ms ease-out;
+      }
+      &.active {
+        color: var(--color-neutral-0);
+        &::after {
+          width: 100%;
+          height: 100%;
+          background-color: var(--color-primary);
+        }
+      }
+      &:hover {
+        color: var(--color-neutral-0);
+        &::after {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .menu-button {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+}

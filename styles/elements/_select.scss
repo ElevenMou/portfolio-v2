@@ -1,0 +1,26 @@
+select {
+  cursor: pointer;
+  background-color: var(--color-neutral-0);
+  border-radius: 8px;
+  color: var(--color-text-body);
+  font-weight: var(--font-semi-bold);
+  padding: var(--space-none) var(--space-base);
+  border: none;
+  height: 100%;
+  background-color: transparent;
+
+  option {
+    background-color: var(--color-neutral-0);
+    color: var(--color-primary);
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-300);
+  }
+}

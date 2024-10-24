@@ -1,0 +1,57 @@
+.skills {
+  padding: var(--space-xl) 0;
+  position: relative;
+  background-color: var(--color-neutral-2);
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    background-image: linear-gradient(
+      to right,
+      var(--color-neutral-2) 30%,
+      rgba(0, 0, 0, 0)
+    );
+    z-index: 1;
+  }
+  &::after {
+    left: unset;
+    right: 0;
+    background-image: linear-gradient(
+      to left,
+      var(--color-neutral-2) 30%,
+      rgba(0, 0, 0, 0)
+    );
+  }
+  & > div {
+    max-width: 100% !important;
+  }
+  h2 {
+    position: absolute;
+    inset: 0;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: rgb(var(--header-color));
+    animation: slideUp 600ms 1500ms ease-in-out forwards;
+    overflow: hidden;
+  }
+  img {
+    width: auto;
+    max-width: 120px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 100%;
+  }
+  to {
+    max-height: 0;
+  }
+}

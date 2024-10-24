@@ -1,0 +1,37 @@
+.margin {
+  @each $type, $value in $sizes {
+    &-#{$type} {
+      margin: var(--space-#{$type});
+    }
+
+    &-right-#{$type} {
+      margin-right: var(--space-#{$type});
+    }
+
+    &-left-#{$type} {
+      margin-left: var(--space-#{$type});
+    }
+
+    &-top-#{$type} {
+      margin-top: var(--space-#{$type});
+    }
+
+    &-bottom-#{$type} {
+      margin-bottom: var(--space-#{$type});
+    }
+
+    &-x-#{$type} {
+      margin-left: var(--space-#{$type});
+      margin-right: var(--space-#{$type});
+    }
+
+    &-y-#{$type} {
+      margin-bottom: var(--space-#{$type});
+      margin-top: var(--space-#{$type});
+    }
+  }
+
+  &-auto {
+    margin: 0 auto;
+  }
+}
