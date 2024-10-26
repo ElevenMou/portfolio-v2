@@ -9,11 +9,5 @@
     &:hover {
       color: var(--color-primary);
     }
-    &:active {
-      color: var(--color-primary-selected);
-    }
-    &:focus {
-      outline: none;
-    }
   }
 }

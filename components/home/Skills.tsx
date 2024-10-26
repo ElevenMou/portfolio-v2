@@ -3,11 +3,13 @@ import Image from "next/image";
 
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Technology from "@/types/Technology";
+import { useTranslations } from "next-intl";
 
 const Skills = ({ data }: { data: Technology[] }) => {
+  const t = useTranslations("HomeSkills");
   return (
     <section className="skills">
-      <h2>My Skills</h2>
+      <h2>{t("Title")}</h2>
       <Splide
         aria-label="My Skills"
         options={{
@@ -34,10 +36,10 @@ const Skills = ({ data }: { data: Technology[] }) => {
               <div className="skill">
                 <Image
                   src={item.logo}
-                  alt={String(item?.title) ?? "Skill"}
+                  alt={String(item?.title) ?? t("Skill")}
                   width={50}
                   height={50}
-                  title={String(item?.title ?? "")}
+                  title={String(item?.title ?? t("Skill"))}
                 />
               </div>
             </SplideSlide>

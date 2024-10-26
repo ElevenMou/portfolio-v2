@@ -1,0 +1,38 @@
+{
+  "Menu": {
+    "Home": "Accueil",
+    "Blog": "Blog",
+    "Work": "Travail",
+    "Contact": "Contactez-moi"
+  },
+  "HomeBanner": {
+    "Greeting": "Bonjour, je suis Moussa!",
+    "Subtitle": "Ingénieur logiciel",
+    "Location": "Basée en Maroc",
+    "Intro": "Je suis un ingénieur logiciel avec une passion pour résoudre des problèmes complexes et livrer des solutions de haute qualité, user-friendly."
+  },
+  "HomeSkills": {
+    "Title": "Mes compétences",
+    "Skill": "Compétence"
+  },
+  "RecentPosts": {
+    "Title": "Articles récents",
+    "ReadMore": "Lire plus"
+  },
+  "Blog": {
+    "AllPosts": "Tous les articles",
+    "Categories": "Catégories",
+    "Category": "Catégorie",
+    "Posts": "Articles"
+  },
+  "NotFound": {
+    "Title": "Page introuvable",
+    "Message": "La page que vous recherchez n'existe pas.",
+    "Button": "Retourner à l'accueil"
+  },
+  "Error": {
+    "Title": "Une erreur est survenue",
+    "Message": "Une erreur inattendue est survenue.",
+    "Button": "Recommencer"
+  }
+}

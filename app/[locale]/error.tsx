@@ -1,5 +1,6 @@
-"use client"; // Error boundaries must be Client Components
+"use client"; 
 
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
 export default function Error({
@@ -9,6 +10,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations("Error");
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -17,8 +19,8 @@ export default function Error({
   return (
     <div className="main-content page">
       <div>
-        <h1>Something went wrong!</h1>
-        <p>An unexpected error has occurred.</p>
+        <h1>{t("Title")}</h1>
+        <p>{t("Message")}</p>
         <button
           onClick={
             // Attempt to recover by trying to re-render the segment
@@ -26,7 +28,7 @@ export default function Error({
           }
           className="btn btn-primary"
         >
-          Try again
+          {t("Button")}
         </button>
       </div>
     </div>

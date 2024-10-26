@@ -1,0 +1,15 @@
+.locale-switcher {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 18px;
+  padding: 0;
+  transition: all 300ms ease-in-out;
+  img {
+    height: 100%;
+    width: auto;
+  }
+  &:hover {
+    scale: 1.2;
+  }
+}

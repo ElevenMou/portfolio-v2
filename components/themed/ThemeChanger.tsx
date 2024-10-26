@@ -10,6 +10,7 @@ const ThemeChanger = () => {
       <button
         className="theme-changer__button"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        title={theme === "dark" ? "Light Mode" : "Dark Mode"}
       >
         {theme === "dark" ? "☀️" : "🌙"}
       </button>

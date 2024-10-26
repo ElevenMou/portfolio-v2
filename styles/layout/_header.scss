@@ -33,6 +33,11 @@ header {
     align-items: center;
     gap: var(--space-l);
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
+    }
     @media screen and (max-width: 768px) {
       flex-direction: column;
       position: fixed;
@@ -49,10 +54,12 @@ header {
         transform: translateX(0);
       }
 
-      .theme-changer {
+      .header-actions {
         position: absolute;
         bottom: var(--space-m);
         right: var(--space-m);
+        justify-content: space-between;
+        width: calc(100% - var(--space-m) * 2);
       }
     }
 

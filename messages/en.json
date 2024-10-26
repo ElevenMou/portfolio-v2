@@ -1,0 +1,38 @@
+{
+  "Menu": {
+    "Home": "Home",
+    "Blog": "Blog",
+    "Work": "Work",
+    "Contact": "Contact Me"
+  },
+  "HomeBanner": {
+    "Greeting": "Hello, I'm Moussa!",
+    "Subtitle": "Software Engineer",
+    "Location": "Based in Morocco",
+    "Intro": "I'm a software engineer with a passion for solving complex problems and delivering high-quality, user-centric solutions."
+  },
+  "HomeSkills": {
+    "Title": "My Skills",
+    "Skill": "Skill"
+  },
+  "RecentPosts": {
+    "Title": "Recent Posts",
+    "ReadMore": "Read More"
+  },
+  "Blog": {
+    "AllPosts": "All Posts",
+    "Categories": "Categories",
+    "Category": "Category",
+    "Posts": "Posts"
+  },
+  "NotFound": {
+    "Title": "Page Not Found",
+    "Message": "The page you are looking for does not exist.",
+    "Button": "Return Home"
+  },
+  "Error": {
+    "Title": "An Error Occurred",
+    "Message": "An unexpected error has occurred.",
+    "Button": "Try Again"
+  }
+}

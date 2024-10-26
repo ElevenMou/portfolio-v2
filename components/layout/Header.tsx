@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import { RiMenuFill } from "react-icons/ri";
 import { RiCloseFill } from "react-icons/ri";
 import AppLogo from "./AppLogo";
+import { Link, usePathname } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 const ThemeChanger = dynamic(() => import("@/components/themed/ThemeChanger"), {
   ssr: false,
@@ -15,6 +16,7 @@ const Header = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const t = useTranslations("Menu");
   return (
     <header>
       <div>
@@ -33,7 +35,7 @@ const Header = () => {
                 }
                 onClick={() => setTimeout(() => setMenuOpen(false), 800)}
               >
-                Blog
+                {t("Blog")}
               </Link>
             </li>
             <li>
@@ -46,7 +48,7 @@ const Header = () => {
                 }
                 onClick={() => setTimeout(() => setMenuOpen(false), 800)}
               >
-                Work
+                {t("Work")}
               </Link>
             </li>
             <li>
@@ -59,11 +61,14 @@ const Header = () => {
                 }
                 onClick={() => setTimeout(() => setMenuOpen(false), 800)}
               >
-                Contact
+                {t("Contact")}
               </Link>
             </li>
           </ul>
-          <ThemeChanger />
+          <div className="header-actions">
+            <ThemeChanger />
+            <LocaleSwitcher />
+          </div>
         </nav>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <RiCloseFill size={28} /> : <RiMenuFill size={28} />}

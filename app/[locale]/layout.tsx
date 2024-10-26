@@ -4,19 +4,24 @@ import "@/styles/styles.scss";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { routing } from "@/i18n/routing";
 
 import "@splidejs/splide/css";
 import VercelSpeedInsights from "@/components/layout/VercelSpeedInsights";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
+import { notFound } from "next/navigation";
+import ILocale from "@/i18n/ILocale";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -58,24 +63,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  if (!routing.locales.includes(locale as ILocale)) {
+    notFound();
+  }
+  const messages = await getMessages();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
-          <Header />
-          <main>
-            {children}
-            <BackToTop />
-          </main>
-          <Footer />
-        </ThemeProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>
+            <Header />
+            <main>
+              {children}
+              <BackToTop />
+            </main>
+            <Footer />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
       <GoogleAnalytics gaId="G-WE9JC34QQJ" />
 

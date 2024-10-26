@@ -1,26 +1,29 @@
 import PostsGrid from "@/components/themed/PostsGrid";
 import PostPreview from "@/types/PostPreview";
-import CategoriesList from "@/app/(pages)/blog/(components)/CategoriesList";
+import CategoriesList from "@/app/[locale]/(pages)/blog/(components)/CategoriesList";
 import { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import Category from "@/types/Category";
 import { getCategoryBySlug, getPosts } from "@/lib/contentful/blog";
+import { getTranslations } from "next-intl/server";
 
-const getCategory = cache(async (slug: string): Promise<Category> => {
-  const category: Category | null = await getCategoryBySlug(slug);
-  if (!category) {
-    notFound();
+const getCategory = cache(
+  async (slug: string, locale?: string): Promise<Category> => {
+    const category: Category | null = await getCategoryBySlug(slug, locale);
+    if (!category) {
+      notFound();
+    }
+    return category;
   }
-  return category;
-});
+);
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }): Promise<Metadata> {
-  const category = await getCategory(params.slug);
+  const category = await getCategory(params.slug, params.locale);
 
   return {
     title: category.name ?? "Category posts",
@@ -28,9 +31,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const category = await getCategory(params.slug);
+export default async function Page({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}) {
+  const category = await getCategory(params.slug, params.locale);
   const postsList: PostPreview[] = (await getPosts(0, category.id)).posts;
+
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "Blog",
+  });
 
   return (
     <>
@@ -43,8 +55,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         />
       </div>
       <aside>
-        <h2 className="margin-bottom-l">Categories</h2>
-        <CategoriesList />
+        <h2 className="margin-bottom-l">{t("Categories")}</h2>
+        <CategoriesList locale={params.locale} />
       </aside>
     </>
   );

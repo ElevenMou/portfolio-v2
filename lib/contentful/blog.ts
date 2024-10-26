@@ -15,13 +15,15 @@ const POST_PER_PAGE = Number(process.env.NEXT_PUBLIC_POST_PER_PAGE) ?? 6;
  * @returns {Promise<PostPreview[]>}
  */
 export async function getRecentsPosts(
-  limit: number = 6
+  limit: number = 6,
+  locale?: string
 ): Promise<PostPreview[]> {
   const recentPosts: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
       content_type: "post",
       order: ["-sys.createdAt"],
       limit: limit,
+      locale: locale,
     });
 
   if (recentPosts.items.length === 0) {
@@ -38,13 +40,15 @@ export async function getRecentsPosts(
  */
 export async function getPosts(
   skip: number = 0,
-  category?: string
+  category?: string,
+  locale?: string
 ): Promise<{ posts: PostPreview[]; total: number }> {
   const posts: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
       content_type: "post",
       limit: POST_PER_PAGE,
       skip: skip,
+      locale: locale,
       order: ["-sys.createdAt"],
       ...(category
         ? {
@@ -66,13 +70,15 @@ export async function getPosts(
  * @returns {Promise<Post>}
  */
 export async function getPostBySlug(
-  slug: string
+  slug: string,
+  locale?: string
 ): Promise<Entry<EntrySkeletonType, undefined, string> | null> {
   const posts: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
       content_type: "post",
       "fields.slug": slug,
       include: 2,
+      locale: locale,
     });
 
   if (posts.items.length === 0) {
@@ -101,9 +107,9 @@ export async function getTechnologies(): Promise<Technology[]> {
  * Get all categories
  * @returns {Promise<Category[]>}
  */
-export async function getCategories(): Promise<Category[]> {
+export async function getCategories(locale?: string): Promise<Category[]> {
   const categories: EntryCollection<EntrySkeletonType, undefined, string> =
-    await contentful.getEntries({ content_type: "category" });
+    await contentful.getEntries({ content_type: "category", locale: locale });
 
   if (categories.items.length === 0) {
     return [];
@@ -118,12 +124,14 @@ export async function getCategories(): Promise<Category[]> {
  * @returns {Promise<Category>}
  */
 export async function getCategoryBySlug(
-  slug: string
+  slug: string,
+  locale?: string
 ): Promise<Category | null> {
   const categories: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
       content_type: "category",
       "fields.slug": slug,
+      locale: locale,
     });
 
   if (categories.items.length === 0) {

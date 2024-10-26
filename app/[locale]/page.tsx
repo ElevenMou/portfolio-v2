@@ -2,18 +2,18 @@ import Banner from "@/components/home/Banner";
 import Skills from "@/components/home/Skills";
 import Technology from "@/types/Technology";
 import PostPreview from "@/types/PostPreview";
-import PostsGrid from "@/components/home/RecentPosts";
+import RecentPosts from "@/components/home/RecentPosts";
 import { getRecentsPosts, getTechnologies } from "@/lib/contentful/blog";
 
-export default async function Home() {
+export default async function Home({ params }: { params: { locale: string } }) {
   const technologies: Technology[] = await getTechnologies();
-  const posts: PostPreview[] = await getRecentsPosts();
+  const posts: PostPreview[] = await getRecentsPosts(6, params.locale);
 
   return (
     <div className="home-page">
-      <Banner />
+      <Banner locale={params.locale} />
       <Skills data={technologies} />
-      <PostsGrid posts={posts} />
+      <RecentPosts posts={posts} />
     </div>
   );
 }

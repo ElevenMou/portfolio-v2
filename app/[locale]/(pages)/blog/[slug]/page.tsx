@@ -2,7 +2,6 @@ import PostsGrid from "@/components/themed/PostsGrid";
 import PostPreview from "@/types/PostPreview";
 import { Entry, EntrySkeletonType } from "contentful";
 import Image from "next/image";
-import Link from "next/link";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
 import {
@@ -15,10 +14,12 @@ import { notFound } from "next/navigation";
 import transformPost from "@/helpers/blog/transformPost";
 import transformCategory from "@/helpers/blog/transformCategory";
 import { getPostBySlug } from "@/lib/contentful/blog";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-const getPost = cache(async (slug: string) => {
+const getPost = cache(async (slug: string, locale?: string) => {
   const post: Entry<EntrySkeletonType, undefined, string> | null =
-    await getPostBySlug(slug);
+    await getPostBySlug(slug, locale);
 
   if (!post) {
     notFound();
@@ -30,9 +31,9 @@ const getPost = cache(async (slug: string) => {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const post = await getPost(params.slug, params.locale);
   return {
     title: String(post.fields.title) ?? "Blog post",
     description: String(post.fields.description) ?? "Blog post",
@@ -50,8 +51,17 @@ export async function generateMetadata({
   };
 }
 
-export default async function page({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export default async function page({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}) {
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "Menu",
+  });
+
+  const post = await getPost(params.slug, params.locale);
 
   const relatedPosts: PostPreview[] =
     post.fields.relatedContent &&
@@ -71,7 +81,7 @@ export default async function page({ params }: { params: { slug: string } }) {
     <>
       <div>
         <div className="page__breadcrumbs">
-          <Link href="/">Home</Link>
+          <Link href="/">{t("Home")}</Link>
           <span>&gt;</span>
           <Link href="/blog">Blog</Link>
           <span>&gt;</span>

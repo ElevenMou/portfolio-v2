@@ -2,8 +2,8 @@ import Category from "@/types/Category";
 import CategoryLabel from "./CategoryLabel";
 import { getCategories } from "@/lib/contentful/blog";
 
-async function CategoriesList() {
-  const categoriesList: Category[] = await getCategories();
+async function CategoriesList({ locale }: { locale: string }) {
+  const categoriesList: Category[] = await getCategories(locale);
 
   return (
     <div className="categories-list">
