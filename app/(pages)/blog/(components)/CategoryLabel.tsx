@@ -1,10 +1,14 @@
+"use client";
 import getRandomLightColor from "@/helpers/getRandomColor";
 import Category from "@/types/Category";
 import Link from "next/link";
-import { memo } from "react";
+import { useEffect, useState } from "react";
 
 const CategoryLabel = ({ category }: { category: Category }) => {
-  const bgColor = getRandomLightColor();
+  const [bgColor, setBgColor] = useState("#ffffff");
+  useEffect(() => {
+    setBgColor(getRandomLightColor());
+  }, []);
 
   return (
     <Link
@@ -17,4 +21,4 @@ const CategoryLabel = ({ category }: { category: Category }) => {
   );
 };
 
-export default memo(CategoryLabel);
+export default CategoryLabel;

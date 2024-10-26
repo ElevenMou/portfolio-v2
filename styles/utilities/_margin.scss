@@ -30,7 +30,15 @@
       margin-top: var(--space-#{$type});
     }
   }
+  &-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  &-y-auto {
+    margin-bottom: auto;
+    margin-top: auto;
+  }
   &-auto {
     margin: 0 auto;
   }

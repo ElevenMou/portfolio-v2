@@ -1,9 +1,6 @@
 .banner {
   background-color: rgb(var(--header-color));
   padding: var(--space-xxl);
-  p {
-    margin: 0;
-  }
   & > div {
     display: flex;
     align-items: center;
@@ -29,31 +26,14 @@
     }
     p {
       max-width: 600px;
-    }
-    &__links {
-      display: flex;
-      align-items: center;
-      gap: var(--space-base);
-      margin-top: var(--space-l);
+      margin: 0;
 
-      @media screen and (max-width: 768px) {
-        justify-content: center;
+      &.margin-bottom-l {
+        margin-bottom: var(--space-l);
       }
 
-      a {
-        text-decoration: none;
-        color: var(--color-text-body);
-        font-weight: var(--font-semi-bold);
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        &:hover {
-          text-decoration: underline;
-        }
-        svg {
-          width: 24px;
-          height: 24px;
-        }
+      @media screen and (max-width: 768px) {
+        max-width: unset;
       }
     }
   }

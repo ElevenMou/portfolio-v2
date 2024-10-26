@@ -96,3 +96,50 @@ main:has(.main-content) {
     rotate: 360deg;
   }
 }
+
+.back-to-top {
+  &-container {
+    position: sticky;
+    bottom: 20px;
+    right: 20px;
+    margin-bottom: 20px;
+    z-index: 9;
+    display: flex;
+    justify-content: flex-end;
+    max-width: var(--content-wide-size);
+    margin-inline: auto;
+  }
+  position: relative;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background-color: var(--color-background-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary);
+  transition: color 300ms 150ms ease-in-out;
+
+  svg {
+    z-index: 1;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background-color: var(--color-secondary);
+    transition: height 0.3s ease-in-out;
+    z-index: 0;
+  }
+  &:hover {
+    color: var(--color-neutral-0);
+    &::before {
+      height: 100%;
+    }
+  }
+}

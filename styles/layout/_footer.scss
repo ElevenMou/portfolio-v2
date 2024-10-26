@@ -1,0 +1,23 @@
+.footer {
+  border-top: 1px solid var(--color-text-body);
+  padding-inline: var(--space-xxl);
+  & > div {
+    max-width: var(--content-wide-size);
+    margin-inline: auto;
+    padding-block: var(--space-base);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+      gap: var(--space-s);
+      p {
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-inline: var(--space-m);
+  }
+}

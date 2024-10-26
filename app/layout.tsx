@@ -7,6 +7,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "@splidejs/splide/css";
 import VercelSpeedInsights from "@/components/layout/VercelSpeedInsights";
+import Footer from "@/components/layout/Footer";
+import BackToTop from "@/components/layout/BackToTop";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -68,11 +70,15 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            <BackToTop />
+          </main>
+          <Footer />
         </ThemeProvider>
       </body>
       <GoogleAnalytics gaId="G-WE9JC34QQJ" />
-      
+
       <VercelSpeedInsights />
     </html>
   );

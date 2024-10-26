@@ -1,10 +1,7 @@
-/* Icons */
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-
 /* Images */
 import Profile from "@/assets/images/profile-pic.jpg";
 import Image from "next/image";
+import SocialLinks from "@/components/layout/SocialLinks";
 
 const Banner = () => {
   return (
@@ -22,29 +19,12 @@ const Banner = () => {
               height={24}
             />
           </div>
-          <p>
+          <p className="margin-bottom-l">
             I&apos;m a software engineer with a passion for solving complex
             problems and delivering high-quality, user-centric solutions.
           </p>
 
-          <div className="banner__left__links">
-            <a
-              href="https://github.com/ElevenMou"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaGithub />
-              /ElevenMou
-            </a>
-            <a
-              href="https://www.linkedin.com/in/moussasaidi/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedin />
-              /in/moussasaidi
-            </a>
-          </div>
+          <SocialLinks />
         </div>
         <div className="banner__right">
           <div className="banner__right__image">

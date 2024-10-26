@@ -1,0 +1,26 @@
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-body);
+    font-weight: var(--font-semi-bold);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    &:hover {
+      text-decoration: underline;
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

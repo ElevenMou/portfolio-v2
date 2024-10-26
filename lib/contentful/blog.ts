@@ -72,6 +72,7 @@ export async function getPostBySlug(
     await contentful.getEntries({
       content_type: "post",
       "fields.slug": slug,
+      include: 2,
     });
 
   if (posts.items.length === 0) {
