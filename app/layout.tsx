@@ -4,6 +4,8 @@ import "@/styles/styles.scss";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import "@splidejs/splide/css";
 
 const geistSans = localFont({
@@ -64,6 +66,7 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
       <GoogleAnalytics gaId="G-WE9JC34QQJ" />
+      <SpeedInsights />
     </html>
   );
 }
