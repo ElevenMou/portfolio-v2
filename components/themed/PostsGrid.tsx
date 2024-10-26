@@ -7,9 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import CategoryLabel from "../../app/(pages)/blog/(components)/CategoryLabel";
 import { IoCalendarOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { EntryCollection, EntrySkeletonType } from "contentful";
-import contentful from "@/lib/contentful/contentful";
-import transformPost from "@/lib/contentful/transformPost";
+import { getPosts } from "@/lib/contentful/blog";
 
 const POST_PER_PAGE = Number(process.env.NEXT_PUBLIC_POST_PER_PAGE) ?? 6;
 
@@ -34,28 +32,19 @@ const PostsGrid = ({
 
     try {
       setIsLoading(true);
-      const postsCollection: EntryCollection<
-        EntrySkeletonType,
-        undefined,
-        string
-      > = await contentful.getEntries({
-        content_type: "post",
-        limit: POST_PER_PAGE,
-        skip: currentPage * POST_PER_PAGE,
-        order: ["-sys.createdAt"],
-        ...(category
-          ? {
-              "fields.categories.sys.id": category,
-            }
-          : {}),
-      });
 
-      const hasMorePosts =
-        postsCollection.total > (currentPage + 1) * POST_PER_PAGE;
+      /* fetch posts */
+      const skip = currentPage * POST_PER_PAGE;
+      const postsCollection: { posts: PostPreview[]; total: number } =
+        await getPosts(skip, category);
+
+      /* Check if there are more posts */
+      const total = postsCollection.total;
+      const hasMorePosts = total > (currentPage + 1) * POST_PER_PAGE;
       setHasMore(hasMorePosts);
 
-      const postsList = postsCollection.items.map(transformPost);
-      setPosts((prevPosts) => [...prevPosts, ...postsList]);
+      /* Update posts */
+      setPosts((prevPosts) => [...prevPosts, ...postsCollection.posts]);
     } catch (error) {
       console.error("Error fetching posts:", error);
     } finally {

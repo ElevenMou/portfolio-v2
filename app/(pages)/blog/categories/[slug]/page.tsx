@@ -1,19 +1,14 @@
-import PostsGrid from "@/components/home/PostsGrid";
+import PostsGrid from "@/components/themed/PostsGrid";
 import contentful from "@/lib/contentful/contentful";
 import PostPreview from "@/types/PostPreview";
 import { EntryCollection, EntrySkeletonType } from "contentful";
 import CategoriesList from "@/app/(pages)/blog/(components)/CategoriesList";
-import transformPost from "@/lib/contentful/transformPost";
 import { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import Category from "@/types/Category";
-import formatCategory from "@/lib/contentful/formatCategory";
-
-const POST_PER_PAGE = parseInt(
-  process.env.NEXT_PUBLIC_POST_PER_PAGE || "6",
-  10
-);
+import transformCategory from "@/helpers/blog/transformCategory";
+import { getPosts } from "@/lib/contentful/blog";
 
 const getCategory = cache(async (slug: string): Promise<Category> => {
   const categories: EntryCollection<EntrySkeletonType, undefined, string> =
@@ -26,7 +21,7 @@ const getCategory = cache(async (slug: string): Promise<Category> => {
     notFound();
   }
 
-  const category: Category = formatCategory(categories.items[0]);
+  const category: Category = transformCategory(categories.items[0]);
 
   return category;
 });
@@ -46,17 +41,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const category = await getCategory(params.slug);
-
-  const posts: EntryCollection<EntrySkeletonType, undefined, string> =
-    await contentful.getEntries({
-      content_type: "post",
-      limit: POST_PER_PAGE,
-      skip: 0,
-      order: ["-sys.createdAt"],
-      "fields.category.sys.id": category.id,
-    });
-
-  const postsList: PostPreview[] = posts.items?.map(transformPost);
+  const postsList: PostPreview[] = (await getPosts(0, category.id)).posts;
 
   return (
     <>

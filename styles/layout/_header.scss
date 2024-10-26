@@ -40,7 +40,7 @@ header {
       left: 0;
       width: 100%;
       height: calc(100svh - var(--header-height));
-      background-color: var(--header-color);
+      background-color: rgba(var(--header-color));
       padding: var(--space-m);
       transform: translateX(-100%);
       transition: transform 300ms ease-in-out;

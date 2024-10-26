@@ -1,6 +1,6 @@
 import PostPreview from "@/types/PostPreview";
 import React from "react";
-import PostsGrid from "./PostsGrid";
+import PostsGrid from "@/components/themed/PostsGrid";
 
 const RecentPosts = ({ posts }: { posts: PostPreview[] }) => {
   return (

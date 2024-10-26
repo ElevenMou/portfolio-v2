@@ -1,7 +1,7 @@
 import Category from "@/types/Category";
 import { Entry, EntrySkeletonType } from "contentful";
 
-const formatCategory = (
+const transformCategory = (
   category: Entry<EntrySkeletonType, undefined, string>
 ): Category => {
   return {
@@ -12,4 +12,4 @@ const formatCategory = (
   };
 };
 
-export default formatCategory;
+export default transformCategory;

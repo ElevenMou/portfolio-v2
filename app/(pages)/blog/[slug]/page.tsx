@@ -1,4 +1,4 @@
-import PostsGrid from "@/components/home/PostsGrid";
+import PostsGrid from "@/components/themed/PostsGrid";
 import contentful from "@/lib/contentful/contentful";
 import PostPreview from "@/types/PostPreview";
 import { Entry, EntryCollection, EntrySkeletonType } from "contentful";
@@ -13,8 +13,8 @@ import {
 import { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import transformPost from "@/lib/contentful/transformPost";
-import formatCategory from "@/lib/contentful/formatCategory";
+import transformPost from "@/helpers/blog/transformPost";
+import transformCategory from "@/helpers/blog/transformCategory";
 
 const getPost = cache(async (slug: string) => {
   const posts: EntryCollection<EntrySkeletonType, undefined, string> =
@@ -79,7 +79,7 @@ export default async function page({ params }: { params: { slug: string } }) {
           <span>&gt;</span>
           <Link
             href={`/blog/categories/${
-              formatCategory(
+              transformCategory(
                 post.fields.category as Entry<
                   EntrySkeletonType,
                   undefined,
@@ -89,7 +89,7 @@ export default async function page({ params }: { params: { slug: string } }) {
             }`}
           >
             {
-              formatCategory(
+              transformCategory(
                 post.fields.category as Entry<
                   EntrySkeletonType,
                   undefined,
