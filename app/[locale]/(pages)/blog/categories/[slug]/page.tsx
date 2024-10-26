@@ -1,4 +1,4 @@
-import PostsGrid from "@/components/themed/PostsGrid";
+import PostsGrid from "@/app/[locale]/(pages)/blog/(components)/PostsGrid";
 import PostPreview from "@/types/PostPreview";
 import CategoriesList from "@/app/[locale]/(pages)/blog/(components)/CategoriesList";
 import { Metadata } from "next";

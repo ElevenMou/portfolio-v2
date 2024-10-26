@@ -1,6 +1,6 @@
 import PostPreview from "@/types/PostPreview";
 import React from "react";
-import PostsGrid from "@/components/themed/PostsGrid";
+import PostsGrid from "@/app/[locale]/(pages)/blog/(components)/PostsGrid";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import getLocaleFromHeaders from "@/helpers/getLocaleFromHeaders";

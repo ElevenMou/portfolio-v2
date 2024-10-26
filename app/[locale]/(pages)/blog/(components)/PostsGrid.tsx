@@ -3,7 +3,7 @@
 import PostPreview from "@/types/PostPreview";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
-import CategoryLabel from "../../app/[locale]/(pages)/blog/(components)/CategoryLabel";
+import CategoryLabel from "@/app/[locale]/(pages)/blog/(components)/CategoryLabel";
 import { IoCalendarOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { getPosts } from "@/lib/contentful/blog";
