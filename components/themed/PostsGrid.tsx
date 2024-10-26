@@ -25,8 +25,6 @@ const PostsGrid = ({
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialPosts.length >= POST_PER_PAGE);
 
-  console.log(initialPosts);
-
   const fetchPosts = useCallback(async () => {
     if (!hasMore || currentPage === 0) return;
 
@@ -89,7 +87,7 @@ const PostsGrid = ({
                   </div>
                   <div>
                     <AiOutlineClockCircle aria-hidden="true" size={24} />
-                    <span>{post.readTime} read time</span>
+                    <span>{post.readTime}</span>
                   </div>
                 </div>
               </div>

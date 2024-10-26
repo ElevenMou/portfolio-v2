@@ -4,9 +4,9 @@ import "@/styles/styles.scss";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "@splidejs/splide/css";
+import VercelSpeedInsights from "@/components/layout/VercelSpeedInsights";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -48,6 +48,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `./`,
   },
+  openGraph: {
+    siteName: "Moussa Saidi",
+    url: `./`,
+    title: "Moussa Saidi",
+    description: "Moussa Saidi Portfolio and Blog",
+  },
 };
 
 export default function RootLayout({
@@ -66,7 +72,8 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
       <GoogleAnalytics gaId="G-WE9JC34QQJ" />
-      <SpeedInsights />
+      
+      <VercelSpeedInsights />
     </html>
   );
 }

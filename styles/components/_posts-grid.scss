@@ -71,6 +71,7 @@
           var(--color-secondary)
         );
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: var(--font-size-2xl);
         font-weight: var(--font-bold);
