@@ -1,7 +1,6 @@
 import PostsGrid from "@/components/themed/PostsGrid";
-import contentful from "@/lib/contentful/contentful";
 import PostPreview from "@/types/PostPreview";
-import { Entry, EntryCollection, EntrySkeletonType } from "contentful";
+import { Entry, EntrySkeletonType } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -15,18 +14,17 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import transformPost from "@/helpers/blog/transformPost";
 import transformCategory from "@/helpers/blog/transformCategory";
+import { getPostBySlug } from "@/lib/contentful/blog";
 
 const getPost = cache(async (slug: string) => {
-  const posts: EntryCollection<EntrySkeletonType, undefined, string> =
-    await contentful.getEntries({
-      content_type: "post",
-      "fields.slug": slug,
-    });
+  const post: Entry<EntrySkeletonType, undefined, string> | null =
+    await getPostBySlug(slug);
 
-  if (posts.items.length === 0) {
+  if (!post) {
     notFound();
   }
-  return posts.items[0];
+
+  return post;
 });
 
 export async function generateMetadata({

@@ -3,6 +3,7 @@ interface Category {
   name: string;
   slug: string;
   description: string;
+  updateDate?: string;
 }
 
 export default Category;

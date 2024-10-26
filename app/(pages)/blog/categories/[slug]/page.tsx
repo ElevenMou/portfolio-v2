@@ -1,28 +1,17 @@
 import PostsGrid from "@/components/themed/PostsGrid";
-import contentful from "@/lib/contentful/contentful";
 import PostPreview from "@/types/PostPreview";
-import { EntryCollection, EntrySkeletonType } from "contentful";
 import CategoriesList from "@/app/(pages)/blog/(components)/CategoriesList";
 import { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import Category from "@/types/Category";
-import transformCategory from "@/helpers/blog/transformCategory";
-import { getPosts } from "@/lib/contentful/blog";
+import { getCategoryBySlug, getPosts } from "@/lib/contentful/blog";
 
 const getCategory = cache(async (slug: string): Promise<Category> => {
-  const categories: EntryCollection<EntrySkeletonType, undefined, string> =
-    await contentful.getEntries({
-      content_type: "category",
-      "fields.slug": slug,
-    });
-
-  if (categories.items.length === 0) {
+  const category: Category | null = await getCategoryBySlug(slug);
+  if (!category) {
     notFound();
   }
-
-  const category: Category = transformCategory(categories.items[0]);
-
   return category;
 });
 

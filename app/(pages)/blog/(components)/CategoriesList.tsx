@@ -1,20 +1,9 @@
-import contentful from "@/lib/contentful/contentful";
 import Category from "@/types/Category";
-import { EntryCollection, EntrySkeletonType } from "contentful";
 import CategoryLabel from "./CategoryLabel";
+import { getCategories } from "@/lib/contentful/blog";
 
 async function CategoriesList() {
-  const categories: EntryCollection<EntrySkeletonType, undefined, string> =
-    await contentful.getEntries({
-      content_type: "category",
-    });
-
-  const categoriesList: Category[] = categories.items.map((item) => ({
-    id: item.sys.id,
-    name: item.fields.title as string,
-    slug: item.fields.slug as string,
-    description: item.fields.description as string,
-  }));
+  const categoriesList: Category[] = await getCategories();
 
   return (
     <div className="categories-list">

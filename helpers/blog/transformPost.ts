@@ -10,6 +10,7 @@ const transformPost = (
     (item.fields?.banner as EntrySkeletonType)?.fields?.file?.url
   }`,
   date: item.sys?.createdAt as string,
+  updateDate: item.sys?.updatedAt as string,
   excerpt: item.fields?.excerpt as string,
   category: {
     id: String(

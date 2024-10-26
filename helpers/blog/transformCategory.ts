@@ -9,6 +9,7 @@ const transformCategory = (
     name: category.fields.title as string,
     slug: category.fields.slug as string,
     description: category.fields.description as string,
+    updateDate: category.sys?.updatedAt as string,
   };
 };
 

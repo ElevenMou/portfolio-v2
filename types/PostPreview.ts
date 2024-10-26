@@ -5,6 +5,7 @@ interface PostPreview {
   title: string;
   coverImage: string;
   date: string;
+  updateDate?: string;
   excerpt: string;
   category: Category;
   slug: string;

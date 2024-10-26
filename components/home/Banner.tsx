@@ -29,7 +29,7 @@ const Banner = () => {
 
           <div className="banner__left__links">
             <a
-              href="https://github.com/moussamoussa"
+              href="https://github.com/ElevenMou"
               target="_blank"
               rel="noreferrer"
             >
@@ -37,7 +37,7 @@ const Banner = () => {
               /ElevenMou
             </a>
             <a
-              href="https://www.linkedin.com/in/moussamoussa"
+              href="https://www.linkedin.com/in/moussasaidi/"
               target="_blank"
               rel="noreferrer"
             >
