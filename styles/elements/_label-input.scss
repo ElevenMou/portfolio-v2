@@ -1,0 +1,31 @@
+.label-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  &__label {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-semi-bold);
+  }
+  &__input {
+    min-height: 40px;
+    border: 1px solid var(--color-neutral-4);
+    border-radius: 8px;
+    padding: var(--space-s) var(--space-base);
+    resize: vertical;
+  }
+  &__error {
+    color: var(--color-error);
+  }
+  &__success {
+    color: var(--color-success);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: var(--space-l) var(--space-base);
+  border-radius: 8px;
+  background-color: var(--color-background-card);
+}

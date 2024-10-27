@@ -54,5 +54,19 @@
   },
   "Footer": {
     "Copyright": "Copyright © {year} - Tous droits réservés par Moussa Saidi"
+  },
+  "Contact": {
+    "Title": "Contactez-moi",
+    "Subtitle": "N'hésitez pas à me contacter",
+    "Firstname": "Prénom",
+    "Lastname": "Nom",
+    "Send": "Envoyer",
+    "Messages": {
+      "success": "Votre message a bien été envoyé",
+      "error": "Une erreur est survenue lors de l'envoi de votre message",
+      "missingFields": "Veuillez remplir tous les champs",
+      "invalidEmail": "Adresse email invalide",
+      "required": "Ce champ est requis"
+    }
   }
 }
