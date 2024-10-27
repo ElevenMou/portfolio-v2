@@ -1,14 +1,18 @@
 import React from "react";
 import SocialLinks from "./SocialLinks";
+import { getTranslations } from "next-intl/server";
+import getLocaleFromHeaders from "@/helpers/getLocaleFromHeaders";
 
-function Footer() {
+async function Footer() {
+  const locale = getLocaleFromHeaders();
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "Footer",
+  });
   return (
     <footer className="footer">
       <div>
-        <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by Moussa
-          Saidi
-        </p>
+        <p>{t("Copyright", { year: new Date().getFullYear() })}</p>
         <SocialLinks />
       </div>
     </footer>

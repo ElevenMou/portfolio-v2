@@ -33,7 +33,8 @@
     "AllPosts": "Tous les articles",
     "Categories": "Catégories",
     "Category": "Catégorie",
-    "Posts": "Articles"
+    "Posts": "Articles",
+    "RelatedPosts": "Articles connexes"
   },
   "BlogMeta": {
     "Title": "Tous les articles",
@@ -50,5 +51,8 @@
   "RecentProjects": {
     "Title": "Projets récents",
     "SeeMore": "Voir plus"
+  },
+  "Footer": {
+    "Copyright": "Copyright © {year} - Tous droits réservés par Moussa Saidi"
   }
 }

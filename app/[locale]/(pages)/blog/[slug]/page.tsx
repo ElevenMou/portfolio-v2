@@ -61,6 +61,11 @@ export default async function page({
     namespace: "Menu",
   });
 
+  const tblog = await getTranslations({
+    locale: params.locale,
+    namespace: "Blog",
+  });
+
   const post = await getPost(params.slug, params.locale);
 
   const relatedPosts: PostPreview[] =
@@ -159,7 +164,7 @@ export default async function page({
 
         {relatedPosts.length > 0 && (
           <div className="page__related-posts">
-            <h2>Related Posts</h2>
+            <h2>{tblog("RelatedPosts")}</h2>
             <PostsGrid initialPosts={relatedPosts} locale={params.locale} />
           </div>
         )}
