@@ -25,9 +25,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const category = await getCategory(params.slug, params.locale);
 
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "BlogMeta",
+  });
+
   return {
     title: category.name ?? "Category posts",
-    description: `List of posts in the ${category.name} category`,
+    description: t("CategoryDescription", { category: category.name }),
   };
 }
 
@@ -52,6 +57,7 @@ export default async function Page({
           initialPosts={postsList}
           hasNavigation
           category={params.slug}
+          locale={params.locale}
         />
       </div>
       <aside>

@@ -1,0 +1,16 @@
+.recent-projects {
+  padding: var(--space-xl);
+
+  & > div {
+    max-width: var(--content-wide-size) !important;
+  }
+  h2 {
+    margin-bottom: var(--space-l);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-bold);
+    cursor: default;
+  }
+  @media screen and (max-width: 768px) {
+    padding: var(--space-m);
+  }
+}

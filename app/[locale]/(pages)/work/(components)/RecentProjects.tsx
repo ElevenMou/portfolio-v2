@@ -1,26 +1,25 @@
-import PostPreview from "@/types/PostPreview";
 import React from "react";
-import PostsGrid from "@/app/[locale]/(pages)/blog/(components)/PostsGrid";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import getLocaleFromHeaders from "@/helpers/getLocaleFromHeaders";
+import ProjectPreview from "@/types/ProjectPreview";
+import ProjectsGrid from "./ProjectsGrid";
 
-const RecentPosts = async ({ posts }: { posts: PostPreview[] }) => {
+const RecentProjects = async ({ projects }: { projects: ProjectPreview[] }) => {
   const locale = getLocaleFromHeaders();
-  console.log(locale);
 
   const t = await getTranslations({
     locale: locale,
-    namespace: "RecentPosts",
+    namespace: "RecentProjects",
   });
   return (
-    <section className="recent-posts">
+    <section className="recent-projects">
       <div>
         <h2>{t("Title")}</h2>
-        <PostsGrid initialPosts={posts} />
+        <ProjectsGrid initialProjects={projects} />
         <div className="display-flex justify-content-center margin-top-l">
-          <Link href="/blog" className="btn">
-            {t("ReadMore")}
+          <Link href="/work" className="btn">
+            {t("SeeMore")}
           </Link>
         </div>
       </div>
@@ -28,4 +27,4 @@ const RecentPosts = async ({ posts }: { posts: PostPreview[] }) => {
   );
 };
 
-export default RecentPosts;
+export default RecentProjects;

@@ -6,6 +6,7 @@ export default function transformTechnology(
 ): Technology {
   return {
     id: item.sys.id,
+    slug: item.fields?.slug as string,
     title: item.fields?.title as string,
     logo: `https:${
       (item.fields?.logo as EntrySkeletonType)?.fields?.file?.url

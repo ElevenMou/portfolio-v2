@@ -35,8 +35,20 @@
     "Category": "Catégorie",
     "Posts": "Articles"
   },
+  "BlogMeta": {
+    "Title": "Tous les articles",
+    "Description": "Liste de tous les articles du blog de Moussa Saidi",
+    "CategoryDescription": "Liste des articles de la catégorie {category}"
+  },
   "Work": {
-    "Title": "Mes projets",
-    "Technologies": "Technologies"
+    "Title": "Mes {technology} projets",
+    "Technologies": "Technologies",
+    "Description": "Liste de tous mes projets",
+    "empty": "Aucun projet trouvé pour la technologie {technology}",
+    "techsUsed": "Technologies utilisées"
+  },
+  "RecentProjects": {
+    "Title": "Projets récents",
+    "SeeMore": "Voir plus"
   }
 }

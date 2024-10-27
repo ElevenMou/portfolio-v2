@@ -1,9 +1,10 @@
 import ProjectsGrid from "@/app/[locale]/(pages)/work/(components)/ProjectsGrid";
 import TechnologiesList from "@/app/[locale]/(pages)/work/(components)/TechnologiesList";
 import { Metadata } from "next";
-import { getProjects } from "@/lib/contentful/work";
+import { getProjects, getTechnologyBySlug } from "@/lib/contentful/work";
 import { getTranslations } from "next-intl/server";
 import ProjectPreview from "@/types/ProjectPreview";
+import Technology from "@/types/Technology";
 
 export async function generateMetadata({
   params,
@@ -16,15 +17,21 @@ export async function generateMetadata({
   });
 
   return {
-    title: t("Title", { technology: "" }),
+    title: t("Title"),
     description: t("Description"),
   };
 }
 
-export default async function Page({ params }: { params: { locale: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
   const ProjectsList: ProjectPreview[] = (
-    await getProjects(0, undefined, params.locale)
+    await getProjects(0, params.slug, params.locale)
   ).projects;
+
+  const technology: Technology | null = await getTechnologyBySlug(params.slug);
 
   const t = await getTranslations({
     locale: params.locale,
@@ -34,12 +41,15 @@ export default async function Page({ params }: { params: { locale: string } }) {
   return (
     <>
       <div>
-        <h1 className="page-title">{t("Title", { technology: "" })}</h1>
+        <h1 className="page-title">
+          {t("Title", { technology: technology?.title ?? "" })}
+        </h1>
         <ProjectsGrid
           initialProjects={ProjectsList}
           hasNavigation
+          technology={params.slug}
+          emptyMessage={t("empty", { technology: technology?.title ?? "" })}
           locale={params.locale}
-          emptyMessage={t("empty", { technology: "" })}
         />
       </div>
       <aside>

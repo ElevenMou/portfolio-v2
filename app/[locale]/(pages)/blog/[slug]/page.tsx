@@ -160,7 +160,7 @@ export default async function page({
         {relatedPosts.length > 0 && (
           <div className="page__related-posts">
             <h2>Related Posts</h2>
-            <PostsGrid initialPosts={relatedPosts} />
+            <PostsGrid initialPosts={relatedPosts} locale={params.locale} />
           </div>
         )}
       </div>

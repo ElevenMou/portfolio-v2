@@ -1,0 +1,86 @@
+.projects-grid {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: var(--space-xl);
+    &__item {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      &__image {
+        display: inline;
+        aspect-ratio: 40 / 21;
+        object-fit: cover;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--color-text-body);
+        background-color: var(--color-background-card);
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: all 300ms ease-in-out;
+        &:hover {
+          .projects-grid__list__item__content {
+            scale: 1;
+            opacity: 1;
+            max-height: 100%;
+          }
+        }
+      }
+
+      &__content {
+        border-radius: 12px;
+        padding: var(--space-m);
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        scale: 0.8;
+        max-height: 75%;
+        opacity: 0;
+        transition: opacity 300ms ease-in-out, scale 300ms 300ms ease-in-out,
+          max-height 300ms 300ms ease-in-out;
+        p {
+          margin-bottom: var(--space-s);
+          color: var(--color-neutral-0);
+        }
+      }
+
+      h3 {
+        margin-bottom: var(--space-base);
+        background-image: linear-gradient(
+          to right,
+          var(--color-primary-lightest),
+          var(--color-secondary)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-bold);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__load-more {
+    width: 100%;
+    margin-top: var(--space-m);
+    .btn {
+      width: 100%;
+    }
+  }
+}

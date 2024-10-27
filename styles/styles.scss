@@ -16,6 +16,7 @@
 @import "./components/social-links";
 @import "./components/nprogress";
 @import "./components/locale-switcher";
+@import "./components/projects-grid";
 
 /* Sections */
 .home-page section > div {
@@ -25,6 +26,8 @@
 @import "./sections/skills";
 @import "./sections/posts";
 @import "./sections/categories-list";
+@import "./sections/work";
+@import "./sections/technologies-list";
 
 /* Utilities */
 @import "./utilities/flex";

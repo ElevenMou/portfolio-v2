@@ -5,10 +5,21 @@ import { Metadata } from "next";
 import { getPosts } from "@/lib/contentful/blog";
 import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "All Blog Posts",
-  description: "Navigate through all blog posts and categories by Moussa Saidi",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}): Promise<Metadata> {
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "BlogMeta",
+  });
+
+  return {
+    title: t("Title"),
+    description: t("Description"),
+  };
+}
 
 export default async function Page({ params }: { params: { locale: string } }) {
   const postsList: PostPreview[] = (await getPosts(0, undefined, params.locale))
@@ -23,7 +34,11 @@ export default async function Page({ params }: { params: { locale: string } }) {
     <>
       <div>
         <h1 className="page-title">{t("AllPosts")}</h1>
-        <PostsGrid initialPosts={postsList} hasNavigation />
+        <PostsGrid
+          initialPosts={postsList}
+          hasNavigation
+          locale={params.locale}
+        />
       </div>
       <aside>
         <h2 className="margin-bottom-l">{t("Categories")}</h2>

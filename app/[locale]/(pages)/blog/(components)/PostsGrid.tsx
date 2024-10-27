@@ -15,10 +15,12 @@ const PostsGrid = ({
   initialPosts,
   hasNavigation = false,
   category,
+  locale,
 }: {
   initialPosts: PostPreview[];
   hasNavigation?: boolean;
   category?: string;
+  locale: string;
 }) => {
   const [posts, setPosts] = useState<PostPreview[]>(initialPosts);
   const [currentPage, setCurrentPage] = useState(0);
@@ -34,7 +36,7 @@ const PostsGrid = ({
       /* fetch posts */
       const skip = currentPage * POST_PER_PAGE;
       const postsCollection: { posts: PostPreview[]; total: number } =
-        await getPosts(skip, category);
+        await getPosts(skip, category, locale);
 
       /* Check if there are more posts */
       const total = postsCollection.total;

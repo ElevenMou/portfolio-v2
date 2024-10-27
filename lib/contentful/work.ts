@@ -1,7 +1,5 @@
 import { Entry, EntryCollection, EntrySkeletonType } from "contentful";
 import contentful from "./contentful";
-import PostPreview from "@/types/PostPreview";
-import transformPost from "@/helpers/blog/transformPost";
 import Technology from "@/types/Technology";
 import transformTechnology from "@/helpers/blog/transformTechnology";
 import ProjectPreview from "@/types/ProjectPreview";
@@ -10,11 +8,11 @@ import transformProject from "@/helpers/work/transformProject";
 const POST_PER_PAGE = Number(process.env.NEXT_PUBLIC_POST_PER_PAGE) ?? 6;
 
 /*
- * Get recent work
+ * Get recent projects
  * @param {number} limit
  * @returns {Promise<ProjectPreview[]>}
  */
-export async function getRecentsWork(
+export async function getRecentsProjects(
   limit: number = 6,
   locale?: string
 ): Promise<ProjectPreview[]> {
@@ -34,58 +32,74 @@ export async function getRecentsWork(
 }
 
 /*
- * Get blog posts
+ * Get all Projects
  * @param {number} limit
- * @returns {Promise<PostPreview[]>}
+ * @param {string} technology
+ * @param {string} locale
+ * @returns {Promise<{ projects: ProjectPreview[]; total: number }>}
  */
-export async function getPosts(
+export async function getProjects(
   skip: number = 0,
-  category?: string,
+  technology?: string,
   locale?: string
-): Promise<{ posts: PostPreview[]; total: number }> {
-  const posts: EntryCollection<EntrySkeletonType, undefined, string> =
+): Promise<{ projects: ProjectPreview[]; total: number }> {
+  let technologyEntry;
+  if (technology) {
+    const techResult = await contentful.getEntries({
+      content_type: "technology",
+      "fields.slug": technology,
+      limit: 1,
+    });
+
+    technologyEntry = techResult.items[0]?.sys.id;
+  }
+
+  const projects: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
-      content_type: "post",
+      content_type: "project",
       limit: POST_PER_PAGE,
       skip: skip,
       locale: locale,
       order: ["-sys.createdAt"],
-      ...(category
+      ...(technologyEntry
         ? {
-            "fields.category.sys.id": category,
+            links_to_entry: technologyEntry,
           }
         : {}),
     });
 
-  if (posts.items.length === 0) {
-    return { posts: [], total: 0 };
+  if (projects.items.length === 0) {
+    return { projects: [], total: 0 };
   }
 
-  return { posts: posts.items.map(transformPost), total: posts.total };
+  return {
+    projects: projects.items.map(transformProject),
+    total: projects.total,
+  };
 }
 
 /*
- * Get post by slug
+ * Get project by slug
  * @param {string} slug
- * @returns {Promise<Post>}
+ * @returns {Promise<ProjectPreview>}
  */
-export async function getPostBySlug(
+export async function getProjectBySlug(
   slug: string,
   locale?: string
 ): Promise<Entry<EntrySkeletonType, undefined, string> | null> {
-  const posts: EntryCollection<EntrySkeletonType, undefined, string> =
+  const Projects: EntryCollection<EntrySkeletonType, undefined, string> =
     await contentful.getEntries({
-      content_type: "post",
+      content_type: "project",
       "fields.slug": slug,
       include: 2,
       locale: locale,
     });
 
-  if (posts.items.length === 0) {
+  if (Projects.items.length === 0) {
     return null;
   }
 
-  return posts.items[0];
+  return Projects.items[0];
 }
 
 /*
@@ -101,4 +115,25 @@ export async function getTechnologies(): Promise<Technology[]> {
   }
 
   return techs.items.map(transformTechnology);
+}
+
+/*
+ * Get technology by slug
+ * @param {string} slug
+ * @returns {Promise<Technology>}
+ */
+export async function getTechnologyBySlug(
+  slug: string
+): Promise<Technology | null> {
+  const techs: EntryCollection<EntrySkeletonType, undefined, string> =
+    await contentful.getEntries({
+      content_type: "technology",
+      "fields.slug": slug,
+    });
+
+  if (techs.items.length === 0) {
+    return null;
+  }
+
+  return transformTechnology(techs.items[0]);
 }

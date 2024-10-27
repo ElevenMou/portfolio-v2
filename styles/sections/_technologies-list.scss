@@ -1,4 +1,4 @@
-.categories {
+.technologies {
   &-list {
     display: flex;
     flex-wrap: wrap;
@@ -6,7 +6,7 @@
   }
 }
 
-.category-label {
+.technology-label {
   text-decoration: none;
   border-radius: 12px;
   transition: all 300ms ease-in-out;

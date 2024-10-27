@@ -7,7 +7,6 @@ import getLocaleFromHeaders from "@/helpers/getLocaleFromHeaders";
 
 const RecentPosts = async ({ posts }: { posts: PostPreview[] }) => {
   const locale = getLocaleFromHeaders();
-  console.log(locale);
 
   const t = await getTranslations({
     locale: locale,
