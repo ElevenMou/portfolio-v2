@@ -3,7 +3,8 @@ import Skills from "@/components/home/Skills";
 import Technology from "@/types/Technology";
 import PostPreview from "@/types/PostPreview";
 import RecentPosts from "@/app/[locale]/(pages)/blog/(components)/RecentPosts";
-import { getRecentsPosts, getTechnologies } from "@/lib/contentful/blog";
+import { getRecentsPosts } from "@/lib/contentful/blog";
+import { getTechnologies } from "@/lib/contentful/work";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const technologies: Technology[] = await getTechnologies();

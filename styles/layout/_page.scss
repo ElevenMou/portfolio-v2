@@ -150,3 +150,20 @@ main:has(.main-content) {
     }
   }
 }
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background-color: var(--color-primary);
+  color: var(--color-neutral-0);
+  padding: var(--space-xs) var(--space-s);
+  text-decoration: none;
+  font-weight: var(--font-semi-bold);
+  transform: translateY(-100%);
+  transition: transform 300ms ease-in-out;
+  &:focus {
+    transform: translateY(0);
+  }
+}

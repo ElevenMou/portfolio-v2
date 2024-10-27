@@ -1,4 +1,14 @@
 {
+  "NotFound": {
+    "Title": "Page introuvable",
+    "Message": "La page que vous recherchez n'existe pas.",
+    "Button": "Retourner à l'accueil"
+  },
+  "Error": {
+    "Title": "Une erreur est survenue",
+    "Message": "Une erreur inattendue est survenue.",
+    "Button": "Recommencer"
+  },
   "Menu": {
     "Home": "Accueil",
     "Blog": "Blog",
@@ -25,14 +35,8 @@
     "Category": "Catégorie",
     "Posts": "Articles"
   },
-  "NotFound": {
-    "Title": "Page introuvable",
-    "Message": "La page que vous recherchez n'existe pas.",
-    "Button": "Retourner à l'accueil"
-  },
-  "Error": {
-    "Title": "Une erreur est survenue",
-    "Message": "Une erreur inattendue est survenue.",
-    "Button": "Recommencer"
+  "Work": {
+    "Title": "Mes projets",
+    "Technologies": "Technologies"
   }
 }

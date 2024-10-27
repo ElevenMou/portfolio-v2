@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: "Moussa Saidi",
-    url: `./`,
+    url: process.env.NEXT_PUBLIC_APP_URL,
     title: "Moussa Saidi",
     description: "Moussa Saidi Portfolio and Blog",
   },
@@ -81,8 +81,11 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
             <Header />
-            <main>
+            <main id="main-content">
               {children}
               <BackToTop />
             </main>
