@@ -50,7 +50,7 @@ const PostsGrid = ({
     } finally {
       setIsLoading(false);
     }
-  }, [category, currentPage, hasMore]);
+  }, [category, currentPage, hasMore, locale]);
 
   useEffect(() => {
     fetchPosts();

@@ -54,7 +54,7 @@ const ProjectsGrid = ({
     } finally {
       setIsLoading(false);
     }
-  }, [technology, currentPage, hasMore]);
+  }, [technology, currentPage, hasMore, locale]);
 
   useEffect(() => {
     fetchProjects();
