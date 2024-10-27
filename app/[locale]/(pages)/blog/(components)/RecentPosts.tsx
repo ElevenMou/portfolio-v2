@@ -16,7 +16,7 @@ const RecentPosts = async ({ posts }: { posts: PostPreview[] }) => {
     <section className="recent-posts">
       <div>
         <h2>{t("Title")}</h2>
-        <PostsGrid initialPosts={posts} />
+        <PostsGrid initialPosts={posts} locale={locale} />
         <div className="display-flex justify-content-center margin-top-l">
           <Link href="/blog" className="btn">
             {t("ReadMore")}
