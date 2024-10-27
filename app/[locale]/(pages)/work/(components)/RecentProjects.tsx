@@ -16,7 +16,7 @@ const RecentProjects = async ({ projects }: { projects: ProjectPreview[] }) => {
     <section className="recent-projects">
       <div>
         <h2>{t("Title")}</h2>
-        <ProjectsGrid initialProjects={projects} />
+        <ProjectsGrid initialProjects={projects} locale={locale} />
         <div className="display-flex justify-content-center margin-top-l">
           <Link href="/work" className="btn">
             {t("SeeMore")}
