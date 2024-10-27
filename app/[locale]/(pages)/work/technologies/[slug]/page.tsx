@@ -5,6 +5,16 @@ import { getProjects, getTechnologyBySlug } from "@/lib/contentful/work";
 import { getTranslations } from "next-intl/server";
 import ProjectPreview from "@/types/ProjectPreview";
 import Technology from "@/types/Technology";
+import { cache } from "react";
+import { notFound } from "next/navigation";
+
+const getTechnology = cache(async (slug: string) => {
+  const technology: Technology | null = await getTechnologyBySlug(slug);
+  if (!technology) {
+    notFound();
+  }
+  return technology;
+});
 
 export async function generateMetadata({
   params,
@@ -16,8 +26,9 @@ export async function generateMetadata({
     namespace: "Work",
   });
 
+  const technology: Technology | null = await getTechnology(params.slug);
   return {
-    title: t("Title"),
+    title: t("Title", { technology: technology?.title ?? "" }),
     description: t("Description"),
   };
 }
@@ -31,7 +42,7 @@ export default async function Page({
     await getProjects(0, params.slug, params.locale)
   ).projects;
 
-  const technology: Technology | null = await getTechnologyBySlug(params.slug);
+  const technology: Technology | null = await getTechnology(params.slug);
 
   const t = await getTranslations({
     locale: params.locale,
