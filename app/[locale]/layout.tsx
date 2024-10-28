@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "@/styles/styles.scss";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { routing } from "@/i18n/routing";
+import { Analytics } from "@vercel/analytics/react";
 
 import "@splidejs/splide/css";
 import VercelSpeedInsights from "@/components/layout/VercelSpeedInsights";
@@ -93,8 +93,7 @@ export default async function RootLayout({
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
-      <GoogleAnalytics gaId="G-WE9JC34QQJ" />
-
+      <Analytics />
       <VercelSpeedInsights />
     </html>
   );
