@@ -19,7 +19,11 @@ import {
 import { usePathname } from "next/navigation";
 import { memo, useEffect, useState } from "react";
 
-export default memo(function SocialShare() {
+export default memo(function SocialShare({
+  className,
+}: {
+  className?: string;
+}) {
   const path = usePathname();
   const [link, setLink] = useState<string>(
     `https://www.moussasaidi.com${path}`
@@ -42,7 +46,7 @@ export default memo(function SocialShare() {
   }, [path]);
 
   return (
-    <div className="social-share">
+    <div className={`social-share ${className}`}>
       <h2 className="margin-bottom-s">{tblog("Share")}</h2>
       <div className="social-share__links">
         <LinkedinShareButton url={link} onClick={analyticsEvent}>

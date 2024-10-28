@@ -186,6 +186,18 @@ const renderNode = (node: Node): React.ReactNode => {
     case "hr":
       return <hr key={generateUniqueId()} />;
 
+    case "hyperlink":
+      return (
+        <a 
+          key={generateUniqueId()} 
+          href={node.data.uri as string}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {node.content.map((child) => renderNode(child))}
+        </a>
+      );
+
     case "embedded-asset-block":
       const asset = node.data.target as EmbededAsset;
       if (asset?.fields?.file) {

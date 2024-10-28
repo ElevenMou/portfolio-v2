@@ -13,6 +13,7 @@ import { getTranslations } from "next-intl/server";
 import { getProjectBySlug } from "@/lib/contentful/work";
 import TechnologiesList from "@/app/[locale]/(pages)/work/(components)/TechnologiesList";
 import transformTechnology from "@/helpers/blog/transformTechnology";
+import SocialShare from "@/components/themed/SocialShare";
 
 const getProject = cache(async (slug: string, locale?: string) => {
   const project: Entry<EntrySkeletonType, undefined, string> | null =
@@ -21,6 +22,8 @@ const getProject = cache(async (slug: string, locale?: string) => {
   if (!project) {
     notFound();
   }
+
+  console.log(JSON.stringify(project.fields.content));
 
   return project;
 });
@@ -133,6 +136,8 @@ export default async function page({
               ).map((t) => transformTechnology(t))}
             />
           )}
+
+          <SocialShare className="margin-top-l" />
         </div>
       </aside>
     </>
