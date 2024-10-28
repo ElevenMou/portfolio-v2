@@ -3,16 +3,18 @@ import Category from "@/types/Category";
 import PostPreview from "@/types/PostPreview";
 import { MetadataRoute } from "next";
 
+const URL = "https://www.moussasaidi.com"
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts: PostPreview[] = (await getPosts()).posts || [];
 
   const postsEntries: MetadataRoute.Sitemap = posts.flatMap((post) => [
     {
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/en/blog/${post.slug}`,
+      url: `${URL}/en/blog/${post.slug}`,
       lastModified: post.updateDate || post.date,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/fr/blog/${post.slug}`,
+      url: `${URL}/fr/blog/${post.slug}`,
       lastModified: post.updateDate || post.date,
     },
   ]);
@@ -22,11 +24,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categoriesEntries: MetadataRoute.Sitemap = categories.flatMap(
     (category) => [
       {
-        url: `${process.env.NEXT_PUBLIC_APP_URL}/en/blog/categories/${category.slug}`,
+        url: `${URL}/en/blog/categories/${category.slug}`,
         lastModified: category.updateDate,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_APP_URL}/fr/blog/categories/${category.slug}`,
+        url: `${URL}/fr/blog/categories/${category.slug}`,
         lastModified: category.updateDate,
       },
     ]
@@ -34,10 +36,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/en`,
+      url: `${URL}/en`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/fr`,
+      url: `${URL}/fr`,
     },
     ...postsEntries,
     ...categoriesEntries,
