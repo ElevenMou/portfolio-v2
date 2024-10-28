@@ -77,7 +77,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
-      <GoogleTagManager gtmId="GTM-WZMBKRGW" />
+      <GoogleTagManager gtmId={String(process.env.NEXT_PUBLIC_GTMID)} />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
