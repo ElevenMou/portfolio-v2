@@ -25,6 +25,11 @@ export default memo(function SocialShare() {
   );
   const tblog = useTranslations("Blog");
 
+  /* const analyticsEvent = () => {
+    // Google Analytics
+    ("event", "social_share", { social: "Blog" });
+  }; */
+
   useEffect(() => {
     setLink(`https://www.moussasaidi.com${path}`);
   }, [path]);
