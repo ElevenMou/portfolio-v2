@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGTMEvent } from "@next/third-parties/google";
 import { useTranslations } from "next-intl";
 import {
   FacebookShareButton,
@@ -25,10 +26,16 @@ export default memo(function SocialShare() {
   );
   const tblog = useTranslations("Blog");
 
-  /* const analyticsEvent = () => {
-    // Google Analytics
-    ("event", "social_share", { social: "Blog" });
-  }; */
+  const analyticsEvent = () => {
+    sendGTMEvent({
+      dataLayer: {
+        event: "share",
+        path: path,
+      },
+      eventAction: "share",
+      eventCategory: "social",
+    });
+  };
 
   useEffect(() => {
     setLink(`https://www.moussasaidi.com${path}`);
@@ -38,22 +45,22 @@ export default memo(function SocialShare() {
     <div className="social-share">
       <h2 className="margin-bottom-s">{tblog("Share")}</h2>
       <div className="social-share__links">
-        <LinkedinShareButton url={link}>
+        <LinkedinShareButton url={link} onClick={analyticsEvent}>
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
-        <FacebookShareButton url={link}>
+        <FacebookShareButton url={link} onClick={analyticsEvent}>
           <FacebookIcon size={32} round />
         </FacebookShareButton>
-        <TwitterShareButton url={link}>
+        <TwitterShareButton url={link} onClick={analyticsEvent}>
           <TwitterIcon size={32} round />
         </TwitterShareButton>
-        <RedditShareButton url={link}>
+        <RedditShareButton url={link} onClick={analyticsEvent}>
           <RedditIcon size={32} round />
         </RedditShareButton>
-        <WhatsappShareButton url={link}>
+        <WhatsappShareButton url={link} onClick={analyticsEvent}>
           <WhatsappIcon size={32} round />
         </WhatsappShareButton>
-        <TelegramShareButton url={link}>
+        <TelegramShareButton url={link} onClick={analyticsEvent}>
           <TelegramIcon size={32} round />
         </TelegramShareButton>
       </div>
