@@ -1,6 +1,7 @@
 .footer {
   border-top: 1px solid var(--color-text-body);
   padding-inline: var(--space-xxl);
+  min-height: var(--footer-height);
   & > div {
     max-width: var(--content-wide-size);
     margin-inline: auto;

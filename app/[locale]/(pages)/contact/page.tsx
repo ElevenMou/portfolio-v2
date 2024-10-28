@@ -17,12 +17,14 @@ export default async function Page({ params }: { params: { locale: string } }) {
         <ContactMeForm />
       </div>
       <aside>
-        <h2>Contact info</h2>
+        <div>
+          <h2>Contact info</h2>
 
-        <p>Email: contact@moussasaidi.com</p>
-        <p>Phone: +212 6 32 64 35 67</p>
+          <p>Email: contact@moussasaidi.com</p>
+          <p>Phone: +212 6 32 64 35 67</p>
 
-        <SocialLinks />
+          <SocialLinks />
+        </div>
       </aside>
     </>
   );

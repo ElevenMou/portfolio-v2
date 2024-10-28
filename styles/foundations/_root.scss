@@ -48,6 +48,7 @@
   --color-text-body: #{$color-text-body-light};
   --header-color: #{$header-color-light};
   --header-height: 80px;
+  --footer-height: 90px;
   --content-size: 980px;
   --content-wide-size: 1280px;
 }
@@ -80,7 +81,7 @@ body {
 }
 
 main {
-  min-height: calc(100svh - var(--header-height));
+  min-height: calc(100svh - var(--header-height) - var(--footer-height));
 }
 
 /// Default h1, .heading1-6 and font-size-display styles

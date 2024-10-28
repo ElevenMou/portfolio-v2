@@ -120,18 +120,20 @@ export default async function page({
       </div>
 
       <aside>
-        <h2 className="margin-bottom-l">{twork("techsUsed")}</h2>
-        {project.fields.technologies && (
-          <TechnologiesList
-            technologies={(
-              project.fields.technologies as Entry<
-                EntrySkeletonType,
-                undefined,
-                string
-              >[]
-            ).map((t) => transformTechnology(t))}
-          />
-        )}
+        <div>
+          <h2 className="margin-bottom-l">{twork("techsUsed")}</h2>
+          {project.fields.technologies && (
+            <TechnologiesList
+              technologies={(
+                project.fields.technologies as Entry<
+                  EntrySkeletonType,
+                  undefined,
+                  string
+                >[]
+              ).map((t) => transformTechnology(t))}
+            />
+          )}
+        </div>
       </aside>
     </>
   );

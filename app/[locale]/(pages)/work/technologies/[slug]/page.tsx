@@ -64,8 +64,10 @@ export default async function Page({
         />
       </div>
       <aside>
-        <h2 className="margin-bottom-l">{t("Technologies")}</h2>
-        <TechnologiesList />
+        <div>
+          <h2 className="margin-bottom-l">{t("Technologies")}</h2>
+          <TechnologiesList />
+        </div>
       </aside>
     </>
   );

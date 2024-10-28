@@ -41,8 +41,10 @@ export default async function Page({ params }: { params: { locale: string } }) {
         />
       </div>
       <aside>
-        <h2 className="margin-bottom-l">{t("Categories")}</h2>
-        <CategoriesList locale={params.locale} />
+        <div>
+          <h2 className="margin-bottom-l">{t("Categories")}</h2>
+          <CategoriesList locale={params.locale} />
+        </div>
       </aside>
     </>
   );

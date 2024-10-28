@@ -16,6 +16,7 @@ import transformCategory from "@/helpers/blog/transformCategory";
 import { getPostBySlug } from "@/lib/contentful/blog";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import SocialShare from "@/components/themed/SocialShare";
 
 const getPost = cache(async (slug: string, locale?: string) => {
   const post: Entry<EntrySkeletonType, undefined, string> | null =
@@ -170,7 +171,9 @@ export default async function page({
         )}
       </div>
 
-      <aside>{/* reserved for sidebar */}</aside>
+      <aside>
+        <SocialShare />
+      </aside>
     </>
   );
 }
