@@ -14,7 +14,7 @@ import { notFound } from "next/navigation";
 import ILocale from "@/i18n/ILocale";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -77,6 +77,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
+      <GoogleTagManager gtmId="GTM-WZMBKRGW" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -95,8 +96,8 @@ export default async function RootLayout({
         </NextIntlClientProvider>
       </body>
       <Analytics />
-      <GoogleAnalytics gaId="G-WE9JC34QQJ" />
       <VercelSpeedInsights />
+      <GoogleAnalytics gaId="G-WE9JC34QQJ" />
     </html>
   );
 }
