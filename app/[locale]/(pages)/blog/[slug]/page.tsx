@@ -84,7 +84,7 @@ export default async function page({
 
   return (
     <>
-      <div>
+      <div className="page__content">
         <div className="page__breadcrumbs">
           <Link href="/">{t("Home")}</Link>
           <span>&gt;</span>

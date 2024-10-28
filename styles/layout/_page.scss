@@ -85,6 +85,11 @@
       margin-bottom: var(--space-s);
     }
   }
+  &__content {
+    h2 {
+      margin-top: var(--space-xl);
+    }
+  }
 }
 
 main:has(.main-content) {
