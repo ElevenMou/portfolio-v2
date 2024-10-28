@@ -31,6 +31,8 @@ export interface RichTextDocument {
     content: Node[];
   };
 }
+
+const generateUniqueId = () => Math.random().toString(36).substring(2);
 const renderNode = (node: Node): React.ReactNode => {
   switch (node.nodeType) {
     case BLOCKS.DOCUMENT:
@@ -38,35 +40,35 @@ const renderNode = (node: Node): React.ReactNode => {
 
     case BLOCKS.HEADING_2:
       return (
-        <h2 key={Math.random()}>
+        <h2 key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </h2>
       );
 
     case BLOCKS.HEADING_3:
       return (
-        <h3 key={Math.random()}>
+        <h3 key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </h3>
       );
 
     case BLOCKS.HEADING_4:
       return (
-        <h4 key={Math.random()}>
+        <h4 key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </h4>
       );
 
     case BLOCKS.HEADING_5:
       return (
-        <h5 key={Math.random()}>
+        <h5 key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </h5>
       );
 
     case BLOCKS.HEADING_6:
       return (
-        <h6 key={Math.random()}>
+        <h6 key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </h6>
       );
@@ -83,13 +85,13 @@ const renderNode = (node: Node): React.ReactNode => {
         const code = lines.slice(1).join("\n"); // Rest is the actual code
 
         return (
-          <Highlight key={Math.random()} className={language}>
+          <Highlight key={generateUniqueId()} className={language}>
             {code}
           </Highlight>
         );
       }
       return (
-        <p key={Math.random()}>
+        <p key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </p>
       );
@@ -102,17 +104,17 @@ const renderNode = (node: Node): React.ReactNode => {
         content = node.marks.reduce<React.ReactNode>((acc, mark) => {
           switch (mark.type) {
             case "bold":
-              return <strong key={Math.random()}>{acc}</strong>;
+              return <strong key={generateUniqueId()}>{acc}</strong>;
             case "italic":
-              return <em key={Math.random()}>{acc}</em>;
+              return <em key={generateUniqueId()}>{acc}</em>;
             case "underline":
-              return <u key={Math.random()}>{acc}</u>;
+              return <u key={generateUniqueId()}>{acc}</u>;
             case "strikethrough":
-              return <del key={Math.random()}>{acc}</del>;
+              return <del key={generateUniqueId()}>{acc}</del>;
             case "subscript":
-              return <sub key={Math.random()}>{acc}</sub>;
+              return <sub key={generateUniqueId()}>{acc}</sub>;
             case "superscript":
-              return <sup key={Math.random()}>{acc}</sup>;
+              return <sup key={generateUniqueId()}>{acc}</sup>;
             case "code":
               return acc; // Skip code marks as they're handled at paragraph level
             default:
@@ -125,35 +127,35 @@ const renderNode = (node: Node): React.ReactNode => {
 
     case "unordered-list":
       return (
-        <ul key={Math.random()}>
+        <ul key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </ul>
       );
 
     case "ordered-list":
       return (
-        <ol key={Math.random()}>
+        <ol key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </ol>
       );
 
     case "list-item":
       return (
-        <li key={Math.random()}>
+        <li key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </li>
       );
 
     case "blockquote":
       return (
-        <blockquote key={Math.random()}>
+        <blockquote key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </blockquote>
       );
 
     case "table":
       return (
-        <div className="table-container" key={Math.random()}>
+        <div className="table-container" key={generateUniqueId()}>
           <table>
             <tbody>{node.content.map((child) => renderNode(child))}</tbody>
           </table>
@@ -162,33 +164,33 @@ const renderNode = (node: Node): React.ReactNode => {
 
     case "table-row":
       return (
-        <tr key={Math.random()}>
+        <tr key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </tr>
       );
 
     case "table-header-cell":
       return (
-        <th key={Math.random()}>
+        <th key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </th>
       );
 
     case "table-cell":
       return (
-        <td key={Math.random()}>
+        <td key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
         </td>
       );
 
     case "hr":
-      return <hr key={Math.random()} />;
+      return <hr key={generateUniqueId()} />;
 
     case "embedded-asset-block":
       const asset = node.data.target as EmbededAsset;
       if (asset?.fields?.file) {
         return (
-          <div key={Math.random()} className="embedded-asset">
+          <div key={generateUniqueId()} className="embedded-asset">
             <Image
               src={`https:${asset.fields.file.url}`}
               alt={asset.fields.title || ""}
