@@ -1,9 +1,12 @@
 import { getCategories, getPosts } from "@/lib/contentful/blog";
+import { getProjects, getTechnologies } from "@/lib/contentful/work";
 import Category from "@/types/Category";
 import PostPreview from "@/types/PostPreview";
+import ProjectPreview from "@/types/ProjectPreview";
+import Technology from "@/types/Technology";
 import { MetadataRoute } from "next";
 
-const URL = "https://www.moussasaidi.com"
+const URL = "https://www.moussasaidi.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts: PostPreview[] = (await getPosts()).posts || [];
@@ -34,6 +37,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]
   );
 
+  const work: ProjectPreview[] = (await getProjects()).projects || [];
+
+  const projectsEntries: MetadataRoute.Sitemap = work.flatMap((project) => [
+    {
+      url: `${URL}/en/work/${project.slug}`,
+      lastModified: project.updateDate || project.date,
+    },
+    {
+      url: `${URL}/fr/work/${project.slug}`,
+      lastModified: project.updateDate || project.date,
+    },
+  ]);
+
+  const technologies: Technology[] = (await getTechnologies()) || [];
+
+  const technologiesEntries: MetadataRoute.Sitemap = technologies.flatMap(
+    (technology) => [
+      {
+        url: `${URL}/en/work/technologies/${technology.slug}`,
+        lastModified: technology.updateDate,
+      },
+      {
+        url: `${URL}/fr/work/technologies/${technology.slug}`,
+        lastModified: technology.updateDate,
+      },
+    ]
+  );
+
   return [
     {
       url: `${URL}/en`,
@@ -43,5 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...postsEntries,
     ...categoriesEntries,
+    ...projectsEntries,
+    ...technologiesEntries,
   ];
 }

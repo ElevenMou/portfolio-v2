@@ -11,5 +11,6 @@ export default function transformTechnology(
     logo: `https:${
       (item.fields?.logo as EntrySkeletonType)?.fields?.file?.url
     }`,
+    updateDate: item.sys?.updatedAt as string,
   };
 }
