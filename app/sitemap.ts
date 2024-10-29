@@ -28,11 +28,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     (category) => [
       {
         url: `${URL}/en/blog/categories/${category.slug}`,
-        lastModified: category.updateDate,
+        lastModified: new Date().toISOString(),
       },
       {
         url: `${URL}/fr/blog/categories/${category.slug}`,
-        lastModified: category.updateDate,
+        lastModified: new Date().toISOString(),
       },
     ]
   );
@@ -56,11 +56,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     (technology) => [
       {
         url: `${URL}/en/work/technologies/${technology.slug}`,
-        lastModified: technology.updateDate,
+        lastModified: new Date().toISOString(),
       },
       {
         url: `${URL}/fr/work/technologies/${technology.slug}`,
-        lastModified: technology.updateDate,
+        lastModified: new Date().toISOString(),
       },
     ]
   );
