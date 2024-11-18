@@ -163,6 +163,8 @@ const renderNode = (node: Node): React.ReactNode => {
       );
 
     case "table-row":
+      console.log(node);
+
       return (
         <tr key={generateUniqueId()}>
           {node.content.map((child) => renderNode(child))}
@@ -188,8 +190,8 @@ const renderNode = (node: Node): React.ReactNode => {
 
     case "hyperlink":
       return (
-        <a 
-          key={generateUniqueId()} 
+        <a
+          key={generateUniqueId()}
           href={node.data.uri as string}
           target="_blank"
           rel="noopener noreferrer"

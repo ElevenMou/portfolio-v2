@@ -1,0 +1,74 @@
+.table-container {
+  position: relative;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-text-body);
+  background: var(--color-background);
+
+  /* Scrollbar styling for webkit browsers */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-text-body);
+    border-radius: 4px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 100%;
+    font-size: 0.875rem;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--color-text-body);
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  th {
+    font-weight: var(--font-semi-bold);
+    text-align: left;
+    padding: 0.75rem;
+    white-space: nowrap;
+    background-color: var(--color-primary);
+    color: var(--color-neutral-0);
+    &:first-child {
+      border-top-left-radius: 0.5rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.5rem;
+    }
+    &:not(:last-child) {
+      border-right: 1px solid var(--color-text-body);
+    }
+  }
+
+  td {
+    padding: 0.75rem;
+    word-break: break-word;
+    &:not(:last-child) {
+      border-right: 1px solid var(--color-text-body);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
+
+    th,
+    td {
+      padding: 0.5rem;
+    }
+  }
+}
