@@ -1,5 +1,5 @@
 /* Images */
-import Profile from "@/assets/images/profile-pic.jpg";
+import Profile from "@/assets/images/profile-pic.jpeg";
 import Image from "next/image";
 import SocialLinks from "@/components/layout/SocialLinks";
 import { getTranslations } from "next-intl/server";
